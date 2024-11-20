@@ -1,0 +1,32 @@
+Line Range: 38-65 (Method: addProduct)
+Identified Code Smell: Large Method
+Reason: The method is doing too many things, such as validating inputs, creating the product, calculating the final price, and updating the global data. It would be better to refactor the validation logic into separate methods, the price calculation into another helper method, and have a cleaner responsibility for this function.
+
+2. Line Range: 66-77 (Method: calculateFinalPrice)
+Identified Code Smell: Long Method
+Reason: The method contains many conditional checks and price calculations based on different discount types. It should be refactored into smaller methods to increase readability and reduce complexity.
+
+3. Line 41 (Method: processOrder)
+Identified Code Smell: Conditional Complexity
+Reason: There are multiple conditions (if (productIds.size() != quantities.size()) and if (product.stock >= quantity)) that make the method harder to follow. Extracting logic into helper methods could make the flow clearer.
+
+4. Line Range: 116-140 (Method: GenerateInventoryReport)
+Identified Code Smell: Duplication
+Reason: The logic for iterating through products and printing their details is repeated. Refactoring into a separate method to print product details could help to eliminate duplication.
+
+5. Line 141 (Method: GenerateSalesReport)
+Identified Code Smell: Duplication
+Reason: This method has the same kind of iteration pattern as the previous one in GenerateInventoryReport. It can be abstracted into a helper function that both methods can use to generate reports.
+
+6. Line Range: 58-64 (Method: processOrder)
+Identified Code Smell: Data Clumping
+Reason: The product's details (like id, name, and category) are being handled directly in the processOrder method. This could be refactored into an OrderItem class or a separate object to reduce dependency on the globalInventoryData.
+
+7. Line 9 (Class: inventorySystem)
+Identified Code Smell: God Class
+Reason: The class inventorySystem handles many responsibilities, from adding products to processing orders and generating reports. This class violates the Single Responsibility Principle. It should be split into smaller classes, each handling its specific responsibility (e.g., OrderManager, ProductManager).
+
+8. Line 1 (Class: globalInventoryData)
+Identified Code Smell: Global Data
+Reason: globalInventoryData is a static class holding all global data. This practice can create hard-to-maintain code and makes unit testing difficult. It is better to use dependency injection or pass data explicitly to methods and classes.
+
